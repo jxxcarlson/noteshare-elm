@@ -1,0 +1,46 @@
+main2:: renders html of doc.rendered_text but does not
+ender mathJax
+
+main1:: fetches date-time as json from `/test` route and displays time
+
+http://stackoverflow.com/questions/16370329/is-there-a-good-way-to-insert-random-html-js-snippets-in-elm[Run javascript inside elm]
+
+http://docs.mathjax.org/en/latest/start.html#putting-mathematics-in-a-web-page[MathJax
+
+http://elm-lang.org:1234/guide/interop#ports[Interop: ports]]
+
+https://guide.elm-lang.org/interop/javascript.html[Interop: javascript]
+
+https://gist.github.com/evancz/e69723b23958e69b63d5b5502b0edf90[Spelling example]
+
+https://github.com/bsouthga/elm-katex/tree/master/src[Elm - KaTeX]
+
+https://github.com/gdotdesign/elm-github-install[Elm - Github install]
+
+https://guide.elm-lang.org/architecture[Elm Architecture
+
+https://github.com/rtfeldman[Richard Feldman, NoRedInk]
+
+https://github.com/lukewestby/elm-template[Elm Template]
+
+http://package.elm-lang.org/packages/evancz/elm-html/4.0.1/Html[HTML Reference]
+
+https://robots.thoughtbot.com/decoding-json-structures-with-elm[Decoding JSON structures]
+
+https://guide.elm-lang.org/interop/json.html[Elm JSON Reference]
+http://package.elm-lang.org/packages/elm-lang/core/3.0.0/Json-Decode[Elm better JSON Reference]
+
+
+https://dennisreimann.de/articles/elm-data-structures-record-tuple.html[Elm Data Structures]
+
+http://www.lambdacat.com/road-to-elm-destructuring/[Destructuring by Lamnbda Cat]
+
+https://github.com/mattjbray/servant-elm[Elm servant -- Generate Elm functions to query your Servant API]
+
+http://tylerscode.com/2016/06/decoding-json-elm/[Decoding JSON in Elm -- Tyler's code -- GOOD!]
+
+https://www.brianthicks.com/post/2016/08/22/decoding-large-json-objects-a-summary[Decoding JSON in Elm -- GOOD!]
+
+http://www.adamwaselnuk.com/elm/2016/05/27/understanding-the-elm-type-system.html[Understanging the Elm type system -- VERY, VERY, GOOD!]
+
+https://github.com/evancz/elm-todomvc[Evan CZ's Todo program]
