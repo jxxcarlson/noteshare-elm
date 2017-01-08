@@ -23,6 +23,8 @@ init =
   ( Document "0" "Introductory Magick" "Don't believe a single word of it!" "Don't believe a <b>single</b> word of it!"
   , Cmd.none
   )
+
+  
 -- MODEL
 
 type alias Document =
@@ -31,14 +33,7 @@ type alias Document =
   , text : String
   , renderedText: String
   }
-{-}
-documentDecode : Decode.Decoder  Document
-documentDecode =
-  decode Document
-    |> Pipeline.required "id" string
-    |> Pipeline.required "title" string-- `null` decodes to `Nothing`
-    |> Pipeline.required "rendered_text" string--
--}
+
 
 --UPDATE
 
@@ -64,13 +59,7 @@ update msg model =
       ({ model | renderedText = "Error for document " ++ model.id }, Cmd.none)
 
 
-
 -- VIEW
-
--- mathJaxPrefix = "<script type=\"text/javascript\" async src=\"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML\"></script>"
--- mathJaxPrefix= "<scriipt type='text/javascript'" ++ " async src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'>" ++ " </scriipt>"
---  async src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'></script>"
--- mathJaxPrefix = "foo"
 
 view : Document -> Html Msg
 view model =
@@ -86,8 +75,6 @@ view model =
     ]
 
 -- HTTP
-
--- id = 225
 
 getDocument : String -> Cmd Msg
 getDocument id =
