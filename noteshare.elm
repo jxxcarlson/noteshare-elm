@@ -9,7 +9,7 @@ import Json.Decode.Pipeline as Pipeline exposing (decode, required, optional, ha
 import Task
 
 
-
+main : Program Never Document Msg
 main =
   Html.program
     { init = init
@@ -71,15 +71,19 @@ view model =
     , br [] []
     ,h2 [] [text model.title]
     , br [] []
-    , div [ (Html.Attributes.property "innerHTML" (Encode.string model.renderedText)) ] []
+    , div [ renderedText model ] []
     ]
 
+renderedText : { a | renderedText : String } -> Attribute msg
+renderedText model =
+    (Html.Attributes.property "innerHTML" (Encode.string model.renderedText))
 
 -- HTTP
 
 -- "http://localhost:2300/v1/documents/" ++ id ++ "?toc"
 -- "http://xdoc-api.herokuapp.com/v1/documents/" ++ id ++ "?toc"
 
+apiServer : String
 apiServer = "http://xdoc-api.herokuapp.com/v1/documents/"
 
 getDocument : String -> Cmd Msg

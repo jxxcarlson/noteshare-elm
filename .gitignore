@@ -1,3 +1,4 @@
-index.html
-NOTES.html
+*.html
 elm-stuff/
+exp/
+.idea/
