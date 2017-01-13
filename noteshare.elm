@@ -74,13 +74,19 @@ view model =
     , div [ (Html.Attributes.property "innerHTML" (Encode.string model.renderedText)) ] []
     ]
 
+
 -- HTTP
+
+-- "http://localhost:2300/v1/documents/" ++ id ++ "?toc"
+-- "http://xdoc-api.herokuapp.com/v1/documents/" ++ id ++ "?toc"
+
+apiServer = "http://xdoc-api.herokuapp.com/v1/documents/"
 
 getDocument : String -> Cmd Msg
 getDocument id =
   let
     url =
-      "http://xdoc-api.herokuapp.com/v1/documents/" ++ id ++ "?toc"
+      apiServer ++ id ++ "?toc"
   in
     Http.send LoadDocument (Http.get url decodeDocument)
 
