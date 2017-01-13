@@ -12,9 +12,9 @@
 #
 
 echo
-echo "compiling $1 ..."
+echo "compiling $1 to index.html"
 elm-make $1 --output index.html
 
-echo "injecting css ..."
+echo "injecting css ... writing index2.html"
 sh inject.sh
 echo
