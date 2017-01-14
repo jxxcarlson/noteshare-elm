@@ -1,3 +1,18 @@
+:toc:
+:sectnums:
+
+
+== Build configurations
+
+=== Standard
+
+Compile `noteshare.elm` to `index.html`, then
+run script to inject css and produce `index2.html`.
+Be sure that when you say `node server.js`, that
+`server.js` is configured to serve `indes2.html`
+
+== Links
+
 main2:: renders html of doc.rendered_text but does not
 ender mathJax
 
