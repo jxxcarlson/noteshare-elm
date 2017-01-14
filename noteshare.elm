@@ -46,7 +46,6 @@ type alias Document =
     , rendered_text : String
     }
 
---UPDATE
 
 type Msg
   = None
@@ -54,8 +53,9 @@ type Msg
   | GetDocument
   | LoadDocument (Result Http.Error DocumentPayload)
 
---| LoadDocument (Result Http.Error String)
---  = None | SetId String| GetDocument | LoadDocument (Result Http.Error Document)
+
+
+--UPDATE
 
 update : Msg -> Document -> (Document, Cmd Msg)
 update msg model =
@@ -64,11 +64,7 @@ update msg model =
       ( model, Cmd.none )
 
     SetId id ->
-        (model, Cmd.none )
-        -- ( Document { model | id = id }, Cmd.none )
-        -- ( model, Cmd.none )
-        -- ( Document {model | id <- id }, Cmd.none )
-        -- ( model | model.id = id, Cmd.none  )
+        ({model | id = Result.withDefault 0 (String.toInt(id))}, Cmd.none)
 
     GetDocument ->
        (model, getDocument model.id)
