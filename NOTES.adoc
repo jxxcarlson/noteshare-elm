@@ -11,6 +11,14 @@ run script to inject css and produce `index2.html`.
 Be sure that when you say `node server.js`, that
 `server.js` is configured to serve `indes2.html`
 
+== Using Ports
+
+https://gist.github.com/evancz/e69723b23958e69b63d5b5502b0edf90[Evan CZ: Spelling app]
+
+https://github.com/evancz/elm-todomvc/blob/master/Todo.elm[Evan CZ: Todo.elm]
+
+https://steemit.com/elm/@billstclair/elm-commands-and-subscriptions-and-ports-oh-my[@billstclair]
+
 == Links
 
 main2:: renders html of doc.rendered_text but does not

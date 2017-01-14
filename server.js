@@ -3,7 +3,8 @@
 
  /* serves main page */
  app.get("/", function(req, res) {
-    res.sendfile('container.html')
+     res.sendfile('container.html')
+    // res.sendfile('index2.html')
  });
 
   app.post("/user/add", function(req, res) { 

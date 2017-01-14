@@ -1,4 +1,7 @@
-*.html
+index.html
+index2.html
 elm-stuff/
 exp/
 .idea/
+main.js
+

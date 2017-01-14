@@ -41,7 +41,12 @@ type alias Document =
 --UPDATE
 
 type Msg
-  = None | SetId String| GetDocument | LoadDocument (Result Http.Error String)
+  = None
+  | SetId String
+  | GetDocument
+  | LoadDocument (Result Http.Error String)
+
+--| LoadDocument (Result Http.Error String)
 --  = None | SetId String| GetDocument | LoadDocument (Result Http.Error Document)
 
 update : Msg -> Document -> (Document, Cmd Msg)
@@ -56,12 +61,8 @@ update msg model =
     GetDocument ->
       (model, getDocument model.id)
 
-    -- LoadDocument (Ok payload) ->
-    --   (payload, Cmd.none)
-
-
     LoadDocument (Ok payload) ->
-          ({ model | renderedText = payload }, Cmd.none)
+      ({ model | renderedText = payload }, render payload)
 
     LoadDocument (Err error) ->
       handleError model error
@@ -83,7 +84,7 @@ view model =
     , br [] []
     ,h2 [] [text model.title]
     , br [] []
-    , div [ renderedText model ] []
+   -- , div [ renderedText model ] []
     ]
 
 renderedText : { a | renderedText : String } -> Attribute msg
@@ -127,6 +128,8 @@ getDocument id =
 
 
 -- SUBSCRIPTIONS
+
+port render : String -> Cmd msg
 
 subscriptions : Document -> Sub Msg
 subscriptions model =
