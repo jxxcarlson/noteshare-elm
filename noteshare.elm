@@ -1,3 +1,5 @@
+port module Noteshare exposing (..)
+
 import Html exposing (..)
 import Html.Attributes exposing (id, class, classList, src, name, type_, title, placeholder)
 import Html.Events exposing (..)
