@@ -1,35 +1,9 @@
-port module Noteshare exposing (..)
-
-import Html exposing (..)
-import Html.Attributes exposing (id, class, classList, src, name, type_, title, placeholder)
-import Html.Events exposing (..)
-import Http
+module AppModel exposing(decodeDocumentPayload, DocumentPayload, Document)
 
 import Json.Encode
--- import Json.Encode as Encode
 import Json.Decode exposing (string, int, list, Decoder)
 import Json.Decode.Pipeline exposing (decode, required, optional)
 
-
-
-
-main : Program Never Document Msg
-main =
-  Html.program
-    { init = init
-    , view = view
-    , update = update
-    , subscriptions = subscriptions
-    }
-
-init : (Document, Cmd Msg)
-init =
-  ( Document 76 "Introductory Magick" "asciidoc-latex" False 39 "jc" False "2017" "2017" "Don't believe a single word of it!" "Don't believe a <b>single</b> word of it!"
-  , Cmd.none
-  )
-
-  
--- MODEL
 
 
 type alias Document =
@@ -47,66 +21,7 @@ type alias Document =
     }
 
 
-type Msg
-  = None
-  | SetId String
-  | GetDocument
-  | LoadDocument (Result Http.Error DocumentPayload)
-
-
-
---UPDATE
-
-update : Msg -> Document -> (Document, Cmd Msg)
-update msg model =
-  case msg of
-    None ->
-      ( model, Cmd.none )
-
-    SetId id ->
-        ({model | id = Result.withDefault 0 (String.toInt(id))}, Cmd.none)
-
-    GetDocument ->
-       (model, getDocument model.id)
-
-    LoadDocument (Ok payload) ->
-       -- ( model, Cmd.none )
-       let doc = payload.document
-
-       in ( doc, render doc.rendered_text)
-
-    LoadDocument (Err error) ->
-       ( model, Cmd.none )
-       -- handleError model error
-
-
-
-handleError model error =
-     ({ model | renderedText = "Error requesting document " ++ model.id}, Cmd.none)
-
--- VIEW
-
-view : Document -> Html Msg
-view model =
-  div [Html.Attributes.style [("margin", "40px")]]
-    [
-     button [ onClick GetDocument ] [text "Get"]
-     , input [ type_ "text", Html.Attributes.placeholder "ID", onInput SetId ] []
-    --  p [ ] [ text model.error]
-    , br [] []
-    ,h2 [] [text model.title]
-    , br [] []
-   -- , div [ renderedText model ] []
-    ]
-
-renderedText : { a | renderedText : String } -> Attribute msg
-renderedText model =
-    (Html.Attributes.property "innerHTML" (Json.Encode.string model.renderedText))
--- "http://xdoc-api.herokuapp.com/v1"
-
-
--- DECODERS
-
+-- DOCUMENT
 
 type alias DocumentPayload =
     { status : String
@@ -157,28 +72,3 @@ encodeDocument record =
         , ("text",  Json.Encode.string <| record.text)
         , ("rendered_text",  Json.Encode.string <| record.rendered_text)
         ]
-
-
--- HTTP
-
-apiServerUrl : String
-apiServerUrl = "http://localhost:2300/v1"
--- apiServerUrl = "http://xdoc-api.herokuapp.com/v1"
-
-getDocument : Int -> Cmd Msg
-getDocument id =
-  let
-    url =
-      apiServerUrl ++ "/documents/" ++ toString(id) ++ "?toc"
-  in
-    Http.send LoadDocument (Http.get url decodeDocumentPayload)
-    -- Http.send LoadDocument (Http.get url documentDecoder)
-
-
--- SUBSCRIPTIONS
-
-port render : String -> Cmd msg
-
-subscriptions : Document -> Sub Msg
-subscriptions model =
-  Sub.none
